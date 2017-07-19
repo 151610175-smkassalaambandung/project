@@ -13,13 +13,13 @@
     <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('/css/font-awesome.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('/css/zabuto_calendar.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/js/gritter/css/jquery.gritter.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('/css/lineicons/style.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/css/style-responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/jquery.dataTables.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/dataTables.bootstrap.css')}}" rel="stylesheet"><!-- 
 
-    <script src="{{asset('/js/chart-master/Chart.js')}}"></script>
+    <script src="{{asset('/js/chart-master/Chart.js')}}"></script> -->
 
     <!-- Scripts -->
     <script>
@@ -31,9 +31,11 @@
 <body>
     <div id="app">
         <header class="header black-bg">
+              @if(Auth::check())
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
+              @endif
             <!--logo start-->
             <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
@@ -100,44 +102,44 @@
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="#" >
                           <i class="fa fa-user"></i>
                           <span>Siswa</span>
                       </a>
                   </li>
                   @role('admin')
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="#" >
                           <i class="fa fa-cogs"></i>
                           <span>Kelas</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="{{route('pelajaran.index')}}" >
                           <i class="fa fa-book"></i>
                           <span>Pelajaran</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="#" >
                           <i class="fa fa-tasks"></i>
                           <span>Nilai</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="#" >
                           <i class="fa fa-user"></i>
                           <span>Guru</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="#" >
                           <i class=" fa fa-bar-chart-o"></i>
                           <span>Admin</span>
                       </a>
                   </li>
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="#" >
                           <i class=" fa fa-bar-chart-o"></i>
                           <span>Laporan</span>
                       </a>
@@ -155,33 +157,36 @@
         <br>
         <br>
 
+        @include('layouts._flash')
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{asset('/js/app.js')}}"></script>
     <!-- <script src="{{asset('/js/bootstrap.min.js')}}"></script> -->
-    <script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script><!-- 
     <script src="{{asset('/js/jquery.js')}}"></script>
-    <script src="{{asset('/js/jquery-1.8.3.min.js')}}"></script>
-    <script src="{{asset('/js/bootstrap.min.js')}}"></script>
     <script class="include" type="text/javascript" src="{{asset('/js/jquery.dcjqaccordion.2.7.js')}}"></script>
     <script src="{{asset('/js/jquery.scrollTo.min.js')}}"></script>
     <script src="{{asset('/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/jquery.sparkline.js')}}"></script>
+    <script src="{{asset('/js/jquery.sparkline.js')}}"></script> -->
 
 
-    <!--common script for all pages-->
+    <!--common script for all pages--><!-- 
     <script src="{{asset('/js/common-scripts.js')}}"></script>
     
     <script type="text/javascript" src="{{asset('/js/gritter/js/jquery.gritter.js')}}"></script>
-    <script type="text/javascript" src="{{asset('/js/gritter-conf.js')}}"></script>
+    <script type="text/javascript" src="{{asset('/js/gritter-conf.js')}}"></script> -->
 
-    <!--script for this page-->
-    <script src="{{asset('/js/sparkline-chart.js')}}"></script>    
-    <script src="{{asset('/js/zabuto_calendar.js')}}"></script>    
+    <!--script for this page--><!-- 
+    <script src="{{asset('/js/sparkline-chart.js')}}"></script> -->
+    <script src="{{asset('/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('/js/custom.js')}}"></script>    
+
+    @yield('scripts')
     
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function () {
         var unique_id = $.gritter.add({
             // (string | mandatory) the heading of the notification
@@ -198,41 +203,6 @@
 
         return false;
         });
-    </script>
-    
-    <script type="application/javascript">
-        $(document).ready(function () {
-            $("#date-popover").popover({html: true, trigger: "manual"});
-            $("#date-popover").hide();
-            $("#date-popover").click(function (e) {
-                $(this).hide();
-            });
-        
-            $("#my-calendar").zabuto_calendar({
-                action: function () {
-                    return myDateFunction(this.id, false);
-                },
-                action_nav: function () {
-                    return myNavFunction(this.id);
-                },
-                ajax: {
-                    url: "show_data.php?action=1",
-                    modal: true
-                },
-                legend: [
-                    {type: "text", label: "Special event", badge: "00"},
-                    {type: "block", label: "Regular event", }
-                ]
-            });
-        });
-        
-        
-        function myNavFunction(id) {
-            $("#date-popover").hide();
-            var nav = $("#" + id).data("navigation");
-            var to = $("#" + id).data("to");
-            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
-        }
-    </script>
+    </script> -->
 </body>
 </html>

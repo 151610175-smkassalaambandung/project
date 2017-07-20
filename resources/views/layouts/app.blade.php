@@ -17,10 +17,21 @@
     <link href="{{asset('/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/css/style-responsive.css')}}" rel="stylesheet">
     <link href="{{asset('/css/jquery.dataTables.css')}}" rel="stylesheet">
-    <link href="{{asset('/css/dataTables.bootstrap.css')}}" rel="stylesheet"><!-- 
+    <link href="{{asset('/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+    <script src="{{asset('/js/chart-master/Chart.js')}}"></script>
+    <style>
+    body{
+      background-image: url({{asset('images/bc3.jpg')}});
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-attachment:fixed;
+    }
+    .panel-custom{
+      background: rgba(255,255,255,0.5);
+      border-radius: 15px;
+    }
 
-    <script src="{{asset('/js/chart-master/Chart.js')}}"></script> -->
-
+    </style>
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -68,6 +79,9 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <a href="{{url('settings/profile')}}">Profile</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -91,7 +105,7 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-                  <p class="centered"><a href=""><img src="{{asset('/wdw.jpg')}}" class="img-circle" width="60"></a></p>
+                  <p class="centered"><a href="#"><img src="{{asset('/wdw.jpg')}}" class="img-circle" width="60"></a></p>
                   <h5 class="centered">{{ Auth::user()->name }} </h5>
                     
                   <li class="mt">
@@ -109,7 +123,7 @@
                   </li>
                   @role('admin')
                   <li class="sub-menu">
-                      <a href="#" >
+                      <a href="{{route('kelas.index')}}" >
                           <i class="fa fa-cogs"></i>
                           <span>Kelas</span>
                       </a>
@@ -118,6 +132,12 @@
                       <a href="{{route('pelajaran.index')}}" >
                           <i class="fa fa-book"></i>
                           <span>Pelajaran</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="{{route('jurusan.index')}}" >
+                          <i class=" fa fa-tasks"></i>
+                          <span>Jurusan</span>
                       </a>
                   </li>
                   <li class="sub-menu">
@@ -130,18 +150,6 @@
                       <a href="#" >
                           <i class="fa fa-user"></i>
                           <span>Guru</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Admin</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Laporan</span>
                       </a>
                   </li>
                   @endrole

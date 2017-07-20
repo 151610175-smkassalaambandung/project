@@ -7,13 +7,13 @@
 					<li><a href="{{ url('/home') }}">Dashboard</a></li>
 					<li class="active">Pelajaran</li>
 				</ul>
-				<div class="panel panel-default">
+				<div class="panel panel-custom">
 					<div class="panel-heading">
 						<h2 class="panel-title">Pelajaran</h2>
 					</div>
 
 					<div class="panel-body">
-					<p><a class="btn btn-primary" href="{{route('pelajaran.create')}}">Tambah</a></p>
+					<p><a class="btn btn-primary" href="{{route('pelajaran.create')}}"><i class="fa fa-plus"></i> Tambah</a></p>
 					{!! $html->table(['class'=>'table-striped']) !!}
 					</div>
 				</div>

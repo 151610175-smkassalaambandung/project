@@ -5,16 +5,16 @@
 			<div class="col-md-8 col-md-offset-2">
 				<ul class="breadcrumb">
 					<li><a href="{{ url('/home') }}">Dashboard</a></li>
-					<li class="active">Tambah Pelajaran</li>
+					<li class="active">Ubah Jurusan</li>
 				</ul>
 				<div class="panel panel-custom">
 					<div class="panel-heading">
-						<h2 class="panel-title">Tambah Pelajaran</h2>
+						<h2 class="panel-title">Ubah Jurusan</h2>
 					</div>
 
 					<div class="panel-body">
-					{!! Form::open(['url' => route('pelajaran.store'), 'method' => 'post' , 'class' => 'form-horizontal']) !!}
-					@include('pelajaran._form')
+					{!! Form::model($jurusan,['url' => route('jurusan.update',$jurusan->id), 'method' => 'put' , 'class' => 'form-horizontal']) !!}
+					@include('jurusan._form')
 					{!! Form::close() !!}
 					</div>
 				</div>

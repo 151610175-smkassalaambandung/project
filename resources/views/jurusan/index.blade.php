@@ -5,20 +5,23 @@
 			<div class="col-md-8 col-md-offset-2">
 				<ul class="breadcrumb">
 					<li><a href="{{ url('/home') }}">Dashboard</a></li>
-					<li class="active">Tambah Pelajaran</li>
+					<li class="active">Jurusan</li>
 				</ul>
 				<div class="panel panel-custom">
 					<div class="panel-heading">
-						<h2 class="panel-title">Tambah Pelajaran</h2>
+						<h2 class="panel-title">Jurusan</h2>
 					</div>
 
 					<div class="panel-body">
-					{!! Form::open(['url' => route('pelajaran.store'), 'method' => 'post' , 'class' => 'form-horizontal']) !!}
-					@include('pelajaran._form')
-					{!! Form::close() !!}
+					<p><a class="btn btn-primary" href="{{route('jurusan.create')}}"><i class="fa fa-plus"></i> Tambah</a></p>
+					{!! $html->table(['class'=>'table-striped']) !!}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+@endsection
+
+@section('scripts')
+	{!! $html->scripts() !!}
 @endsection

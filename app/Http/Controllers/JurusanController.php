@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Pelajaran;
+use App\Jurusan;
 use Yajra\Datatables\Html\Builder;
 use Yajra\Datatables\Datatables;
 use Session;
 
-class PelajaranController extends Controller
+class JurusanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,14 +19,14 @@ class PelajaranController extends Controller
     {
         //
         if ($request->ajax()) {
-            $pelajarans = Pelajaran::select(['id','name']);
-            return Datatables::of($pelajarans)
-                ->addColumn('action',function($pelajaran){
+            $jurusans = Jurusan::select(['id','name']);
+            return Datatables::of($jurusans)
+                ->addColumn('action',function($jurusan){
                     return view('datatable._action',[
-                        'model'    => $pelajaran,
-                        'form_url' => route('pelajaran.destroy',$pelajaran->id),
-                        'edit_url' => route('pelajaran.edit',$pelajaran->id),
-                        'confirm_message' => 'Yakin Mau Menghapus '.$pelajaran->name . '?'
+                        'model'    => $jurusan,
+                        'form_url' => route('jurusan.destroy',$jurusan->id),
+                        'edit_url' => route('jurusan.edit',$jurusan->id),
+                        'confirm_message' => 'Yakin Mau Menghapus '.$jurusan->name . '?'
                     ]);
                 })->make(true);
         }
@@ -36,7 +36,7 @@ class PelajaranController extends Controller
             ->addColumn(['data' => 'name' , 'name' => 'name' ,'title' => 'Nama'])
             ->addColumn(['data' => 'action' , 'name' => 'action' ,'title' => '','orderable'=>false,'searchable'=>false]);
 
-        return view('pelajaran.index')->with(compact('html'));
+        return view('jurusan.index')->with(compact('html'));
     }
 
     /**
@@ -47,7 +47,7 @@ class PelajaranController extends Controller
     public function create()
     {
         //
-        return view('pelajaran.create');
+        return view('jurusan.create');
     }
 
     /**
@@ -59,13 +59,13 @@ class PelajaranController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,['name' => 'required|unique:pelajarans']);
-        $pelajaran = Pelajaran::create($request->only('name'));
+        $this->validate($request,['name' => 'required|unique:jurusans']);
+        $jurusan = Jurusan::create($request->only('name'));
         Session::flash("flash_notification", [
             "level"=>"success",
-            "message"=>"Berhasil menyimpan $pelajaran->name "
+            "message"=>"Berhasil menyimpan $jurusan->name "
             ]);
-        return redirect()->route('pelajaran.index');
+        return redirect()->route('jurusan.index');
     }
 
     /**
@@ -88,8 +88,8 @@ class PelajaranController extends Controller
     public function edit($id)
     {
         //
-        $pelajaran = Pelajaran::find($id);
-        return view('pelajaran.edit')->with(compact('pelajaran'));
+        $jurusan = Jurusan::find($id);
+        return view('jurusan.edit')->with(compact('jurusan'));
     }
 
     /**
@@ -102,14 +102,14 @@ class PelajaranController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $this->validate($request,['name' => 'required|unique:pelajarans']);
-        $pelajaran = Pelajaran::find($id);
-        $pelajaran->update($request->only('name'));
+        $this->validate($request,['name' => 'required|unique:jurusans']);
+        $jurusan = Jurusan::find($id);
+        $jurusan->update($request->only('name'));
         Session::flash("flash_notification", [
             "level"=>"success",
-            "message"=>"Berhasil menyimpan $pelajaran->name "
+            "message"=>"Berhasil menyimpan $jurusan->name "
             ]);
-        return redirect()->route('pelajaran.index');
+        return redirect()->route('jurusan.index');
     }
 
     /**
@@ -121,12 +121,12 @@ class PelajaranController extends Controller
     public function destroy($id)
     {
         //
-        Pelajaran::destroy($id);
+        Jurusan::destroy($id);
 
         Session::flash("flash_notification", [
             "level"=>"success",
-            "message"=>"Pelajaran Berhasil Dihapus"
+            "message"=>"Jurusan Berhasil Dihapus"
             ]);
-        return redirect()->route('pelajaran.index');
+        return redirect()->route('jurusan.index');
     }
 }

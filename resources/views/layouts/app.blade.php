@@ -8,17 +8,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link rel="shortcut icon" type="image/ico" href="{{asset('/images/favicon.png')}}">
     <link href="{{asset('/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/css/app.css')}}" rel="stylesheet">
     <link href="{{asset('/css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('/css/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('/css/font-awesome.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('/js/gritter/css/jquery.gritter.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('/css/jquery.gritter.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('/css/style.css')}}" rel="stylesheet">
     <link href="{{asset('/css/style-responsive.css')}}" rel="stylesheet">
     <link href="{{asset('/css/jquery.dataTables.css')}}" rel="stylesheet">
     <link href="{{asset('/css/dataTables.bootstrap.css')}}" rel="stylesheet">
-    <script src="{{asset('/js/chart-master/Chart.js')}}"></script>
+    <script src="{{asset('/js/Chart.js')}}"></script>
     <style>
     body{
       background-image: url({{asset('images/bc3.jpg')}});
@@ -79,7 +80,10 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{url('settings/profile')}}">Profile</a>
+                                        <a href="{{ url('/settings/password') }}"><i class="fa fa-btn fa-lock"></i> Ubah Password</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('settings/profile')}}"><i class="fa fa-btn fa-user"></i> Profile</a>
                                     </li>
                                     <li>
                                         <a href="{{ url('/logout') }}"
@@ -110,8 +114,8 @@
                     
                   <li class="mt">
                       <a class="active" href="{{ url('/') }}">
-                          <i class="fa fa-dashboard"></i>
-                          <span>Notifikasi</span>
+                          <i class="fa fa-home"></i>
+                          <span>Home</span>
                       </a>
                   </li>
 
@@ -124,7 +128,7 @@
                   @role('admin')
                   <li class="sub-menu">
                       <a href="{{route('kelas.index')}}" >
-                          <i class="fa fa-cogs"></i>
+                          <i class="fa fa-table"></i>
                           <span>Kelas</span>
                       </a>
                   </li>
@@ -136,7 +140,7 @@
                   </li>
                   <li class="sub-menu">
                       <a href="{{route('jurusan.index')}}" >
-                          <i class=" fa fa-tasks"></i>
+                          <i class=" fa fa-clone"></i>
                           <span>Jurusan</span>
                       </a>
                   </li>
@@ -169,48 +173,14 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
     <script src="{{asset('/js/app.js')}}"></script>
     <!-- <script src="{{asset('/js/bootstrap.min.js')}}"></script> -->
-    <script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script><!-- 
-    <script src="{{asset('/js/jquery.js')}}"></script>
-    <script class="include" type="text/javascript" src="{{asset('/js/jquery.dcjqaccordion.2.7.js')}}"></script>
-    <script src="{{asset('/js/jquery.scrollTo.min.js')}}"></script>
-    <script src="{{asset('/js/jquery.nicescroll.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/js/jquery.sparkline.js')}}"></script> -->
-
-
-    <!--common script for all pages--><!-- 
-    <script src="{{asset('/js/common-scripts.js')}}"></script>
-    
-    <script type="text/javascript" src="{{asset('/js/gritter/js/jquery.gritter.js')}}"></script>
-    <script type="text/javascript" src="{{asset('/js/gritter-conf.js')}}"></script> -->
-
-    <!--script for this page--><!-- 
-    <script src="{{asset('/js/sparkline-chart.js')}}"></script> -->
+    <script src="{{asset('/js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{asset('/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{asset('/js/custom.js')}}"></script>    
 
     @yield('scripts')
-    
-    <!-- <script type="text/javascript">
-        $(document).ready(function () {
-        var unique_id = $.gritter.add({
-            // (string | mandatory) the heading of the notification
-            title: 'LARANILAI',
-            // (string | mandatory) the text inside the notification
-            text: 'Aplikasi ini ditujukan untuk pengolahan nilai siswa',
-            // (bool | optional) if you want it to fade out on its own or just sit there
-            sticky: true,
-            // (int | optional) the time you want it to be alive for before fading out
-            time: '',
-            // (string | optional) the class name you want to apply to that specific message
-            class_name: 'my-sticky-class'
-        });
 
-        return false;
-        });
-    </script> -->
 </body>
 </html>

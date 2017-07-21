@@ -115,12 +115,17 @@
                   <li class="mt">
                       <a class="active" href="{{ url('/') }}">
                           <i class="fa fa-home"></i>
-                          <span>Home</span>
+                          <span>Dashboard</span>
                       </a>
                   </li>
-
                   <li class="sub-menu">
                       <a href="#" >
+                          <i class="fa fa-user"></i>
+                          <span>Guru</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="{{route('siswa.index')}}" >
                           <i class="fa fa-user"></i>
                           <span>Siswa</span>
                       </a>
@@ -150,12 +155,7 @@
                           <span>Nilai</span>
                       </a>
                   </li>
-                  <li class="sub-menu">
-                      <a href="#" >
-                          <i class="fa fa-user"></i>
-                          <span>Guru</span>
-                      </a>
-                  </li>
+                  
                   @endrole
               </ul>
               <!-- sidebar menu end-->

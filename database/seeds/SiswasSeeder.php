@@ -2,8 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use App\Kelas;
+use App\Jurusan;
+use App\Siswa;
 
-class KelasSeeder extends Seeder
+class SiswasSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,5 +18,9 @@ class KelasSeeder extends Seeder
         $kelas1 = Kelas::create(['name'=>'X']);
         $kelas2 = Kelas::create(['name'=>'XI']);
         $kelas3 = Kelas::create(['name'=>'XII']);
+
+        $jurusan1 = Jurusan::create(['name'=>'Informatika']);
+
+        $siswa1 = Siswa::create(['name'=>'Aceng','alamat'=>'Jln Sribaduga','kelas_id'=>$kelas1->id,'jurusan_id'=>$jurusan1->id]);
     }
 }

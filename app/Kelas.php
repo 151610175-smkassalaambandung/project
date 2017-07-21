@@ -8,4 +8,9 @@ class Kelas extends Model
 {
     //
     protected $fillable = ['id','name'];
+
+    public function siswas()
+    {
+    	return $this->hasOne('App\Siswa');
+    }
 }

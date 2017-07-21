@@ -5,23 +5,20 @@
 			<div class="col-md-8 col-md-offset-2">
 				<ul class="breadcrumb">
 					<li><a href="{{ url('/home') }}">Dashboard</a></li>
-					<li class="active">Jurusan</li>
+					<li class="active">Ubah Siswa</li>
 				</ul>
 				<div class="panel panel-custom">
 					<div class="panel-heading">
-						<h2 class="panel-title">Jurusan</h2>
+						<h2 class="panel-title">Ubah Siswa</h2>
 					</div>
 
 					<div class="panel-body">
-					<p><a class="btn btn-sm btn-primary" href="{{route('jurusan.create')}}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Tambah</a></p>
-					{!! $html->table(['class'=>'table-striped']) !!}
+					{!! Form::model($siswa,['url' => route('siswa.update',$siswa->id), 'method' => 'put' , 'class' => 'form-horizontal']) !!}
+					@include('siswa._form')
+					{!! Form::close() !!}
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-@endsection
-
-@section('scripts')
-	{!! $html->scripts() !!}
 @endsection

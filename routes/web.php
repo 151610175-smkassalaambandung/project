@@ -23,6 +23,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','role:admin']], function()
 	Route::resource('pelajaran','PelajaranController');
 	Route::resource('kelas','KelasController');
 	Route::resource('jurusan','JurusanController');
+	Route::resource('siswa','siswasController');
 });
 
 Route::get('settings/profile','SettingsController@profile');

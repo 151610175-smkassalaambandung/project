@@ -13,7 +13,7 @@
 					</div>
 
 					<div class="panel-body">
-					<p><a class="btn btn-primary" href="{{route('kelas.create')}}"><i class="fa fa-plus"></i> Tambah</a></p>
+					<p><a class="btn btn-sm btn-primary" href="{{route('kelas.create')}}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Tambah</a></p>
 					{!! $html->table(['class'=>'table-striped']) !!}
 					</div>
 				</div>

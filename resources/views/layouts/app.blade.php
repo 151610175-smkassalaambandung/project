@@ -42,12 +42,13 @@
 </head>
 <body>
     <div id="app">
+        @if(Auth::check())
         <header class="header black-bg">
-              @if(Auth::check())
+              
               <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
-              @endif
+              
             <!--logo start-->
             <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
@@ -102,26 +103,18 @@
                     </ul>
                 </div>
         </header>
-
-
-        @if(Auth::check())
+        
         <aside>
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-                  <p class="centered"><a href="#"><img src="{{asset('/wdw.jpg')}}" class="img-circle" width="60"></a></p>
+                  <p class="centered"><img src="{{asset('/wdw.jpg')}}" class="img-circle" width="60"></p>
                   <h5 class="centered">{{ Auth::user()->name }} </h5>
                     
                   <li class="mt">
                       <a class="active" href="{{ url('/') }}">
                           <i class="fa fa-home"></i>
                           <span>Dashboard</span>
-                      </a>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="#" >
-                          <i class="fa fa-user"></i>
-                          <span>Guru</span>
                       </a>
                   </li>
                   <li class="sub-menu">
@@ -151,12 +144,17 @@
                   </li>
                   <li class="sub-menu">
                       <a href="#" >
+                          <i class="fa fa-user"></i>
+                          <span>Guru</span>
+                      </a>
+                  </li>
+                  @endrole
+                  <li class="sub-menu">
+                      <a href="#" >
                           <i class="fa fa-tasks"></i>
                           <span>Nilai</span>
                       </a>
                   </li>
-                  
-                  @endrole
               </ul>
               <!-- sidebar menu end-->
           </div>

@@ -21,6 +21,6 @@ class SiswasSeeder extends Seeder
 
         $jurusan1 = Jurusan::create(['name'=>'Informatika']);
 
-        $siswa1 = Siswa::create(['name'=>'Aceng','alamat'=>'Jln Sribaduga','kelas_id'=>$kelas1->id,'jurusan_id'=>$jurusan1->id]);
+        $siswa1 = Siswa::create(['nis'=>'151610','name'=>'Aceng','jeniskelamin'=>'Laki-laki','alamat'=>'Jln Sribaduga','kelas_id'=>$kelas1->id,'jurusan_id'=>$jurusan1->id]);
     }
 }

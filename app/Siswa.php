@@ -8,7 +8,7 @@ class Siswa extends Model
 {
     //
 
-    protected $fillable = ['name','alamat','kelas_id','jurusan_id'];
+    protected $fillable = ['nis','name','jeniskelamin','alamat','kelas_id','jurusan_id'];
     
     public function kelas()
     {

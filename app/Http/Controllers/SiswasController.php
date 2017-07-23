@@ -22,6 +22,9 @@ class SiswasController extends Controller
         if ($request->ajax()) {
             $siswas = Siswa::with(['kelas','jurusan']);
             return Datatables::of($siswas)
+                ->addColumn('foto', function($siswa){
+                return '<img src="/img/'.$siswa->foto.'" height="80px" widht="80px" class="img-circle">';
+                })
                 ->addColumn('action',function($siswa){
                     return view('datatable._action',[
                         'model'    => $siswa,
@@ -33,8 +36,10 @@ class SiswasController extends Controller
         }
 
         $html = $htmlBuilder
-            ->addColumn(['data' => 'id' , 'name' => 'id' ,'title' => 'ID'])
+            ->addColumn(['data'=>'foto','name'=>'foto','title'=>'Foto'])
+            ->addColumn(['data' => 'nis' , 'name' => 'nis' ,'title' => 'NIS'])
             ->addColumn(['data' => 'name' , 'name' => 'name' ,'title' => 'Nama'])
+            ->addColumn(['data' => 'jeniskelamin' , 'name' => 'jeniskelamin' ,'title' => 'Jenis Kelamin'])
             ->addColumn(['data' => 'kelas.name' , 'name' => 'kelas.name' ,'title' => 'Kelas'])
             ->addColumn(['data' => 'jurusan.name' , 'name' => 'jurusan.name' ,'title' => 'Jurusan'])
             ->addColumn(['data' => 'action' , 'name' => 'action' ,'title' => '','orderable'=>false,'searchable'=>false]);
@@ -63,7 +68,9 @@ class SiswasController extends Controller
     {
         //
         $this->validate($request,[
+            'nis'   => 'required|numeric|min:6',
             'name'  => 'required',
+            'jeniskelamin'  => 'required',
             'alamat'=> 'required',
             'kelas_id'=>'required|exists:kelas,id',
             'jurusan_id'=>'required|exists:jurusans,id',
@@ -134,7 +141,9 @@ class SiswasController extends Controller
     {
         //
         $this->validate($request,[
+            'nis'   => 'required|numeric|min:6',
             'name'  => 'required',
+            'jeniskelamin'  => 'required',
             'alamat'=> 'required',
             'kelas_id'=>'required|exists:kelas,id',
             'jurusan_id'=>'required|exists:jurusans,id',

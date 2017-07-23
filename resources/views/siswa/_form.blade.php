@@ -1,8 +1,25 @@
+<div class="form-group{{ $errors->has('nis') ? 'has-error' : '' }}">
+	{!! Form::label('nis','NIS',['class'=>'col-md-2 control-label']) !!}
+	<div class="col-md-8">
+		{!! Form::text('nis',null,['class'=>'form-control']) !!}
+		{!! $errors->first('nis','<p class="help-block">:message</p>') !!}
+	</div>
+</div>
+
 <div class="form-group{{ $errors->has('name') ? 'has-error' : '' }}">
 	{!! Form::label('name','Nama',['class'=>'col-md-2 control-label']) !!}
 	<div class="col-md-8">
 		{!! Form::text('name',null,['class'=>'form-control']) !!}
 		{!! $errors->first('name','<p class="help-block">:message</p>') !!}
+	</div>
+</div>
+
+<div class="form-group{{ $errors->has('jeniskelamin') ? 'has-error' : '' }}">
+	{!! Form::label('jeniskelamin','Jenis Kelamin',['class'=>'col-md-2 control-label']) !!}
+	<div class="col-md-8">
+		<input type="radio" name="jeniskelamin" value="Laki-Laki">Laki-Laki
+  		<input type="radio" name="jeniskelamin" value="Perempuan">Perempuan
+		{!! $errors->first('jeniskelamin','<p class="help-block">:message</p>') !!}
 	</div>
 </div>
 

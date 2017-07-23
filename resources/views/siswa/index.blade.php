@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2">
 				<ul class="breadcrumb">
-					<li><a href="{{ url('/home') }}">Dashboard</a></li>
+					<li><a href="{{ url('/') }}">Dashboard</a></li>
 					<li class="active">Siswa</li>
 				</ul>
 				<div class="panel panel-custom">

@@ -23,7 +23,7 @@ class SiswasController extends Controller
             $siswas = Siswa::with(['kelas','jurusan']);
             return Datatables::of($siswas)
                 ->addColumn('foto', function($siswa){
-                return '<img src="/img/'.$siswa->foto.'" height="80px" widht="80px" class="img-circle">';
+                return '<img src="/img/siswa/'.$siswa->foto.'" height="80px" widht="80px" class="img-circle">';
                 })
                 ->addColumn('action',function($siswa){
                     return view('datatable._action',[
@@ -68,7 +68,7 @@ class SiswasController extends Controller
     {
         //
         $this->validate($request,[
-            'nis'   => 'required|numeric|min:6',
+            'nis'   => 'required|numeric|min:6|unique:siswas',
             'name'  => 'required',
             'jeniskelamin'  => 'required',
             'alamat'=> 'required',
@@ -91,7 +91,7 @@ class SiswasController extends Controller
             $filename = md5(time()). '.' . $extension;
 
             //menyimpan foto ke folder public/img
-            $destinationPath = public_path().DIRECTORY_SEPARATOR.'img';
+            $destinationPath = public_path().DIRECTORY_SEPARATOR.'/img/siswa';
             $uploaded_foto->move($destinationPath,$filename);
 
             //mengisi field foto di siswa dengan filename yang baru dibuat
@@ -141,7 +141,7 @@ class SiswasController extends Controller
     {
         //
         $this->validate($request,[
-            'nis'   => 'required|numeric|min:6',
+            'nis'   => 'required|numeric|min:6|unique:siswas',
             'name'  => 'required',
             'jeniskelamin'  => 'required',
             'alamat'=> 'required',
@@ -162,14 +162,14 @@ class SiswasController extends Controller
 
             //
             $filename = md5(time()). '.' . $extension;
-            $destinationPath = public_path().DIRECTORY_SEPARATOR.'img';
+            $destinationPath = public_path().DIRECTORY_SEPARATOR.'/img/siswa';
 
             $uploaded_foto->move($destinationPath,$filename);
 
             //
             if ($siswa->foto) {
                 $old_foto = $siswa->foto;
-                $filpath = public_path().DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$siswa->foto;
+                $filpath = public_path().DIRECTORY_SEPARATOR.'/img/siswa'.DIRECTORY_SEPARATOR.$siswa->foto;
 
                 try{
                     File::delete($filpath);
@@ -202,7 +202,7 @@ class SiswasController extends Controller
         //
         if ($siswa->foto) {
                 $old_foto = $siswa->foto;
-                $filpath = public_path().DIRECTORY_SEPARATOR.'img'.DIRECTORY_SEPARATOR.$siswa->foto;
+                $filpath = public_path().DIRECTORY_SEPARATOR.'/img/siswa'.DIRECTORY_SEPARATOR.$siswa->foto;
 
                 try{
                     File::delete($filpath);
